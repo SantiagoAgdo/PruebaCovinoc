@@ -17,13 +17,17 @@ public class ControllerUsuario {
     private ServiceUsuario serviceUsuario;
 
     @GetMapping("/usuario")
-    public List<Usuario> index() {
-        return serviceUsuario.findAll();
+    public List<Usuario> Mostrar() {
+        return serviceUsuario.buscarTodos();
     }
     @PostMapping("/usuario/save")
-    public ResponseEntity<Usuario> save(@RequestBody Usuario usuario){
-        return new ResponseEntity<>(serviceUsuario.save(usuario), HttpStatus.CREATED);
+    public ResponseEntity<Usuario> guardar(@RequestBody Usuario usuario){
+        return new ResponseEntity<>(serviceUsuario.guardar(usuario), HttpStatus.CREATED);
     }
-
-
+/*
+    @GetMapping("usuario/{username}")
+    public ResponseEntity<?> mostrarPorNombre(@PathVariable String username){
+        return new ResponseEntity<>(serviceUsuario.buscarPorNombre(username), HttpStatus.OK);
+    }
+*/
 }
