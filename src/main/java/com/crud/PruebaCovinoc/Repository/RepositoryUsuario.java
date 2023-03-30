@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface RepositoryUsuario extends JpaRepository<Usuario,Long>, CrudRepository<Usuario,Long> {
-    List<Usuario> findByusername(String username);
+    Usuario findByusername(String username);
 
 }
