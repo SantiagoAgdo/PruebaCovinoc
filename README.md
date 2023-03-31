@@ -1,7 +1,14 @@
 # PruebaCovinoc
 Proyecto Spring Boot
  Prueba para Covinoc Crud
- Este proyecto es una aplicación web desarrollada con Spring Boot. La aplicación permite realizar diversas operaciones CRUD en una base de datos.
+ Este proyecto es una aplicación web desarrollada con Spring Boot. La aplicación permite realizar diversas operaciones CRUD en una base de datos. con arquitectura Micro Servicios.
+Tecnologías aplicadas:
+Springboot
+Spring Security.
+Spring JPA DATA.
+SpringDoc. (Documentacion de api).
+Basic Authentication.
+Api REST.
 
 Requisitos
 Java 11 o superior
@@ -11,17 +18,19 @@ Instalación
 Clonar el repositorio: git clone https://github.com/juansparra/PruebaCovinoc
 Navegar a la carpeta del proyecto: cd PruebaCovinoc
 Compilar el proyecto: mvn clean package
-Ejecutar la aplicación: java -jar target/proyecto-spring-boot-0.0.1-SNAPSHOT.jar
+Ejecutar la aplicación: java -jar target/ pruebacovinoc-0.0.1-SNAPSHOT.jar
 Uso
-Para utilizar la aplicación, navega a http://localhost:8080 en tu navegador web. Desde allí, puedes acceder a las diferentes páginas de la aplicación y realizar operaciones CRUD en la base de datos.
+Base de datos Postgres.
+Crear la base de datos con el nombre de “PruebaDB”. Con el puerto por defecto “5432”.
 
-Contribución
-Si quieres contribuir al proyecto, por favor sigue los siguientes pasos:
+Para utilizar la aplicación, existe un archivo con el nombre PruebaCovinoc.postman_collection en la carpeta raiz del proyecto. donde se encontrarán todos los endpoints realizados. Además adjunto colección vía API:
+https://api.postman.com/collections/24889602-4ad321fd-f6a9-4375-966a-3bfd809dfa14?access_key=PMAT-01GWWJ691Y8VV9GC6QQFKS7B3S
 
-Haz un fork del repositorio
-Crea una rama para tus cambios: git checkout -b mi-rama
-Realiza los cambios necesarios y haz commit: git commit -m "Agregado un nuevo endpoint"
-Haz push a tu rama: git push origin mi-rama
-Crea un Pull Request en GitHub
-Licencia
-Este proyecto está licenciado bajo la Licencia MIT. Ver el archivo LICENSE para más detalles.
+Si desea visualizar la documentación de APIs por medio de Springdoc. Esta es la URL.
+http://localhost:8080/covinoc/swagger-ui/index.html
+
+Usuarios de seguridad:
+Usuario: Admin
+Contraseña: admin1
+
+Autor Juan Sebastian Parra Quevedo
