@@ -1,4 +1,4 @@
-package com.crud.PruebaCovinoc.Security;
+package com.crud.pruebacovinoc.Security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import static com.crud.pruebacovinoc.PruebaCovinocApplication.contraseña;
+import static com.crud.pruebacovinoc.PruebaCovinocApplication.usuario;
 
 @Configuration
 @EnableWebSecurity
@@ -39,8 +41,8 @@ class WebSecurityConfig {
     @Bean
     UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("Admin")
-                .password(passwordEncoder().encode("admin"))
+        manager.createUser(User.withUsername(usuario)
+                .password(passwordEncoder().encode(contraseña))
                 .roles()
                 .build());
         return manager;

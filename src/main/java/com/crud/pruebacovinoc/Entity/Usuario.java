@@ -1,4 +1,4 @@
-package com.crud.PruebaCovinoc.Entity;
+package com.crud.pruebacovinoc.Entity;
 
 import jakarta.persistence.*;
 

@@ -1,11 +1,9 @@
-package com.crud.PruebaCovinoc.Service;
+package com.crud.pruebacovinoc.Service;
 
-import com.crud.PruebaCovinoc.Entity.Usuario;
-import com.crud.PruebaCovinoc.Repository.RepositoryUsuario;
+import com.crud.pruebacovinoc.Entity.Usuario;
+import com.crud.pruebacovinoc.Repository.RepositoryUsuario;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ServiceUsuario {
@@ -30,7 +28,8 @@ public class ServiceUsuario {
     repositoryUsuario.deleteById(id);
     }
     public  Usuario buscarPorNombre(String usuario){
-        return (Usuario) repositoryUsuario.findByusername(usuario);
+
+        return repositoryUsuario.findByusername(usuario);
     }
 
 }

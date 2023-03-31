@@ -1,4 +1,4 @@
-package com.crud.PruebaCovinoc;
+package com.crud.pruebacovinoc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
