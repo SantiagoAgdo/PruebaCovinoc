@@ -2,6 +2,9 @@ package com.crud.pruebacovinoc.controller;
 
 import com.crud.pruebacovinoc.Entity.Usuario;
 import com.crud.pruebacovinoc.service.ServiceUsuario;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +25,14 @@ public class ControllerUsuario {
     public ControllerUsuario(ServiceUsuario serviceUsuario) {
         this.serviceUsuario = serviceUsuario;
     }
-
+    @Operation(description = "recupera todos los usuarios")
+    @ApiResponse(responseCode = "200" ,description ="OK")
     @GetMapping("/usuario")
     public List<Usuario> mostrar() {
         return serviceUsuario.buscarTodos();
     }
 
-
+    @Operation(description = "Guarda usuario")
     @PostMapping("/usuario/save")
     public ResponseEntity guardar(@RequestBody Usuario usuario){
         Usuario usuarioNew;
@@ -45,6 +49,11 @@ public class ControllerUsuario {
         response.put("cliente", usuarioNew);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+    @Operation(description = "recupera el usuario por su username")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",description = "OK"),
+            @ApiResponse(responseCode = "400",description = "PRODUCT NOT FOUND")
+    })
     @GetMapping("usuario/{username}")
     public ResponseEntity mostrarPorNombre(@PathVariable String username){
         Usuario usuario;

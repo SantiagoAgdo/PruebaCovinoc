@@ -32,7 +32,9 @@ class WebSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
         return http
                 .csrf().disable()
+
                 .authorizeHttpRequests()
+                .requestMatchers("/swagger-ui/index.html").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
