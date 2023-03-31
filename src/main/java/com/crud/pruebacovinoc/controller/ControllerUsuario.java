@@ -3,19 +3,34 @@ package com.crud.pruebacovinoc.controller;
 import com.crud.pruebacovinoc.Entity.Usuario;
 import com.crud.pruebacovinoc.service.ServiceUsuario;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/*
+Definicion de anotacion de springdoc
+@Tag: Permite documentar el controlador
+@Operation: Permite definir una descripción para la operación
+@ApiResponses: Permite documentar la forma en que una operación concreta responde, teniendo en cuenta las posibles respuestas en caso de error
+La anotación @Content se utiliza para especificar el tipo de contenido que se devuelve en la respuesta.
+Por ejemplo, si la respuesta devuelve un objeto JSON, se puede utilizar la anotación @Content para especificar que el tipo de contenido es application/json
+La anotación @Schema se utiliza para especificar el esquema JSON del objeto que se devuelve en la respuesta.
+Por ejemplo, se puede utilizar la anotación @Schema para especificar los campos y tipos de datos que se devolverán en la respuesta.
+*/
 @RestController
 @RequestMapping("/api")
+@Tag(name = "usuarios", description = "Modulo de usuarios")
 public class ControllerUsuario {
     private static final String mensaje = "mensaje";
     private static final String error = "error";
@@ -25,8 +40,10 @@ public class ControllerUsuario {
     public ControllerUsuario(ServiceUsuario serviceUsuario) {
         this.serviceUsuario = serviceUsuario;
     }
+
+
     @Operation(description = "recupera todos los usuarios")
-    @ApiResponse(responseCode = "200" ,description ="OK")
+    @ApiResponse(responseCode = "200" ,description ="OK", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Usuario.class))))
     @GetMapping("/usuario")
     public List<Usuario> mostrar() {
         return serviceUsuario.buscarTodos();
@@ -51,8 +68,8 @@ public class ControllerUsuario {
     }
     @Operation(description = "recupera el usuario por su username")
     @ApiResponses({
-            @ApiResponse(responseCode = "200",description = "OK"),
-            @ApiResponse(responseCode = "400",description = "PRODUCT NOT FOUND")
+            @ApiResponse(responseCode = "200",description = "OK", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Usuario.class)))),
+            @ApiResponse(responseCode = "400",description = "PRODUCT NOT FOUND", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Response.class))))
     })
     @GetMapping("usuario/{username}")
     public ResponseEntity mostrarPorNombre(@PathVariable String username){
