@@ -1,6 +1,8 @@
-package com.crud.pruebacovinoc.Security;
+package com.crud.pruebacovinoc.security;
 
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,13 +16,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
 import static com.crud.pruebacovinoc.PruebaCovinocApplication.contraseña;
 import static com.crud.pruebacovinoc.PruebaCovinocApplication.usuario;
+
 
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
 class WebSecurityConfig {
+
+
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
@@ -39,7 +45,9 @@ class WebSecurityConfig {
     }
 
     @Bean
+
     UserDetailsService userDetailsService() {
+
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername(usuario)
                 .password(passwordEncoder().encode(contraseña))

@@ -1,7 +1,7 @@
-package com.crud.pruebacovinoc.Service;
+package com.crud.pruebacovinoc.service;
 
 import com.crud.pruebacovinoc.Entity.Usuario;
-import com.crud.pruebacovinoc.Repository.RepositoryUsuario;
+import com.crud.pruebacovinoc.repository.RepositoryUsuario;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

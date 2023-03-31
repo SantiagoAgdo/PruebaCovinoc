@@ -1,7 +1,7 @@
-package com.crud.pruebacovinoc.Controller;
+package com.crud.pruebacovinoc.controller;
 
 import com.crud.pruebacovinoc.Entity.Usuario;
-import com.crud.pruebacovinoc.Service.ServiceUsuario;
+import com.crud.pruebacovinoc.service.ServiceUsuario;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -85,5 +85,33 @@ try{
         response.put(mensaje, "El cliente eliminado con exito");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+
+    @PutMapping("/usuario/{id}")
+    public ResponseEntity update(@RequestBody Usuario usuario, @PathVariable Long id) {
+        Usuario currentUsuario = this.serviceUsuario.buscarPorId(id);
+        Usuario usuarioUpdated;
+        Map<String, Object> response = new HashMap<>();
+        if(currentUsuario == null) {
+            response.put(mensaje, "Error: no se pudo editar, El cliente ID: ".concat(id.toString().concat(" no existe en nuestra base de datos")));
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
+        try {
+            currentUsuario.setUsername(usuario.getUsername());
+            currentUsuario.setPassword(usuario.getPassword());
+            usuarioUpdated = serviceUsuario.guardar(currentUsuario);
+        } catch(DataAccessException e) {
+            response.put(mensaje, "Error al actualizar en la base de datos");
+            response.put(error,e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put(mensaje, "El usuario ha sido actualizado con exito");
+        response.put("usuario", usuarioUpdated);
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
 
 }

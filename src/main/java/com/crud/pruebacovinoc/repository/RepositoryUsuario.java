@@ -1,4 +1,4 @@
-package com.crud.pruebacovinoc.Repository;
+package com.crud.pruebacovinoc.repository;
 
 import com.crud.pruebacovinoc.Entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
